@@ -1,0 +1,16 @@
+<h1>Книги </h1>
+
+<ul>
+    {% for i in book %}
+    <li>
+        <h2>Название: {{ i.title }}</h2>
+        <img src="{{ i.photo.url }}" alt="{{ i.title }}" width="300" height="200">
+        
+        <p>Время создания поста: {{ i.created_at }}</p>
+        <br>
+        <a href="{% url 'book_id' i.id %}">Подробнее</a>
+    </li>
+    {% endfor %}
+</ul>
+
+

@@ -1,0 +1,20 @@
+<h1>Название - {{ book_id.title }}</h1>
+<img src="{{ book_id.photo }}" alt="{{ book_id.title }}" width="300" height="200">
+
+<p>Автор - {{ book_id.author }}</p>
+<p>Год публикации - {{ book_id.publication_year }}</p>
+<p>Жанр - {{ book_id.genre }}</p>
+<p>Описание книги - {{ book_id.description }}</p>
+<p>Издательство - {{ book_id.publisher }}</p>
+
+{% if book_id.pages %}
+<p>Количество страниц - {{ book_id.pages }}</p>
+{% else %}
+<p>Количество страниц неуказано</p>
+{% endif %}
+
+<p>Бронирование книги - {{ book_id.reserve_book }}</p>
+
+<p>Дата создания - {{ book_id.created_at }}</p>
+
+<a href="{% url 'books_list' %}">Назад к списку</a>
