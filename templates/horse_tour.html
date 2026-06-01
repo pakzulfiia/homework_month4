@@ -1,0 +1,39 @@
+<h1>Лошади</h1>
+<ul>
+    {% for horse in horses %}
+    <li>
+        <p>ID номер:{{ horse.person.id_number }}</p> 
+        <p>Имя человека: {{ horse.person.name }}</p> 
+        <p>Имя лошади: {{ horse.horse_name }}</p> 
+    </li>
+    {% empty %}
+    <li>Нет данных о лошадях</li>
+    {% endfor %}
+</ul>
+<br>
+
+<h1>Конные туры</h1>
+{%for t in tours %}
+<h2>Название тура: {{ t.tittle }}</h2>
+<p>Описание тура: {{ t.description }}</p>
+
+    <h3>Категории</h3>
+    <p>
+        {% for cat in t.categories.all %}
+        {{ cat.name }} {% if not forloop.last %}, {% endif %}
+        {% empty %}
+        Категория не указана
+        {% endfor %}
+    </p>
+
+    <h3>Комметарии</h3>
+    <ul>
+        {% for com in t.comments.all %}
+        <li>
+            <p>Автор комментария: {{ com.author }}</p>
+            <p>Отзыв: {{ com.text }}</p>
+        </li>
+        {% endfor %}
+    </ul>
+
+{% endfor %}
