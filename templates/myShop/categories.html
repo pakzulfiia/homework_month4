@@ -1,0 +1,11 @@
+<h1>Категории</h1>
+
+{% for cat in categories %}
+    <p>
+        <a href="{% url 'category_products' cat.id %}">
+            {{ cat.name }}
+        </a>
+    </p>
+{% empty %}
+    <p>Категории отсутствуют</p>
+{% endfor %}
