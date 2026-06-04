@@ -1,0 +1,17 @@
+<h1>Корзина товаров</h1>
+<a href="#">Добавить товар в корзину</a>
+
+<ul>
+    {% for i in thing %}
+    <li>
+        <h2>Название товара: {{ i.title }}</h2>
+        <img src="{{ i.photo.url }}" alt="{{ i.title }}" width="300" height="200">
+        <p>Цена товара: {{ i.price }} сом </p>
+        <p>Описание товара: {{ i.description }} </p>
+        <p>Оценка товара: {{ i.mark }}★</p>
+        <br>
+        <a href="/thing_list/{{ i.id }}/delete/">Удалить</a><br>
+        <a href="/thing_list/{{ i.id }}/update/">Редактировать</a>
+    </li>
+    {% endfor %}
+</ul>
