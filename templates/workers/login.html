@@ -5,6 +5,9 @@
     {{ form.as_p }}
     <p>Сколько будет 2 + 2?</p>
     <input type="text" name="captcha">
+    {% if error %}
+        <p>{{ error }}</p>
+    {% endif %}
     <button type="submit">Авторизация</button>
 
 </form>
