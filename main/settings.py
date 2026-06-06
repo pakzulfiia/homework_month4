@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     'horse_tour',
     'myShop',
     'BASKET',
+    'work',
 ]
 
 MIDDLEWARE = [
