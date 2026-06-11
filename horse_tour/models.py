@@ -24,10 +24,12 @@ class ChoiceHorse(models.Model):
         return f'{self.person.id_number} - {self.horse_name}'
 
 class HorseTour(models.Model):
-    tittle = models.CharField(max_length=100)
+    title = models.CharField(max_length=100)
     description = models.TextField()
     
     categories = models.ManyToManyField(Category, blank=True)
+    views = models.PositiveIntegerField(db_default=0, null=True)
+
 
     def __str__(self):
         return self.title

@@ -1,5 +1,24 @@
 <h1>Книги </h1>
 
+<div class="pagination">
+        <span class="step-links">
+            {% if book.has_previous %}
+                <a href="?page=1">&laquo; Первая</a>
+                <a href="?page={{ book.previous_page_number }}">Предыдущая</a>
+            {% endif %}
+
+            <span class="current">
+                Страница {{ book.number }} из {{ book.paginator.num_pages }}.
+            </span>
+
+            {% if book.has_next %}
+                <a href="?page={{ book.next_page_number }}">Следующая</a>
+                <a href="?page={{ book.paginator.num_pages }}">Последняя &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+
+
 <ul>
     {% for i in book %}
     <li>

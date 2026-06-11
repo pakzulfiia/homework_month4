@@ -33,6 +33,7 @@ class Books(models.Model):
         MaxValueValidator(5)
     ], verbose_name='Укажите количество книг для бронирования', default=1)
     created_at = models.DateTimeField(auto_now_add=True)
+    views = models.PositiveIntegerField(db_default=0, null=True)
 
     class Meta:
         verbose_name = "книга"

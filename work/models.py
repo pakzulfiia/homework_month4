@@ -13,6 +13,8 @@ class CustomUser(User):
     salary = models.IntegerField(verbose_name='Ожидаемая зарплата?')
     language = models.CharField(max_length=100, default='ru')
     hire_date = models.DateField(auto_now_add=True)
+    views = models.PositiveIntegerField(db_default=0, null=True)
+
 
 
     def __str__(self):

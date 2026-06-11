@@ -14,7 +14,7 @@
 {% endif %}
 
 <p>Бронирование книги - {{ book_id.reserve_book }}</p>
-
+<p>Количество просмотров - {{ book_id.views }}</p>
 <p>Дата создания - {{ book_id.created_at }}</p>
 
 <a href="{% url 'books_list' %}">Назад к списку</a>

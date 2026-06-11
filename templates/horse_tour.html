@@ -2,38 +2,70 @@
 <ul>
     {% for horse in horses %}
     <li>
-        <p>ID номер:{{ horse.person.id_number }}</p> 
-        <p>Имя человека: {{ horse.person.name }}</p> 
-        <p>Имя лошади: {{ horse.horse_name }}</p> 
+        <p>ID номер: {{ horse.person.id_number }}</p>
+        <p>Имя человека: {{ horse.person.name }}</p>
+        <p>Имя лошади: {{ horse.horse_name }}</p>
     </li>
     {% empty %}
     <li>Нет данных о лошадях</li>
     {% endfor %}
 </ul>
+
 <br>
 
 <h1>Конные туры</h1>
-{%for t in tours %}
-<h2>Название тура: {{ t.tittle }}</h2>
-<p>Описание тура: {{ t.description }}</p>
+
+{% for t in tours %}
+    <h2>Название тура: {{ t.title }}</h2>
+
+    <p>Описание тура: {{ t.description }}</p>
+
+    <p>Просмотры: {{ t.views }}</p>
+
+    <a href="?view={{ t.id }}&page={{ tours.number }}">
+        Открыть тур
+    </a>
 
     <h3>Категории</h3>
     <p>
         {% for cat in t.categories.all %}
-        {{ cat.name }} {% if not forloop.last %}, {% endif %}
+            {{ cat.name }}{% if not forloop.last %}, {% endif %}
         {% empty %}
-        Категория не указана
+            Категория не указана
         {% endfor %}
     </p>
 
-    <h3>Комметарии</h3>
+    <h3>Комментарии</h3>
     <ul>
         {% for com in t.comments.all %}
         <li>
             <p>Автор комментария: {{ com.author }}</p>
             <p>Отзыв: {{ com.text }}</p>
         </li>
+        {% empty %}
+        <li>Комментариев нет</li>
         {% endfor %}
     </ul>
 
+    <hr>
 {% endfor %}
+
+<div class="pagination">
+    <span class="step-links">
+
+        {% if tours.has_previous %}
+            <a href="?page=1">&laquo; Первая</a>
+            <a href="?page={{ tours.previous_page_number }}">Предыдущая</a>
+        {% endif %}
+
+        <span class="current">
+            Страница {{ tours.number }} из {{ tours.paginator.num_pages }}.
+        </span>
+
+        {% if tours.has_next %}
+            <a href="?page={{ tours.next_page_number }}">Следующая</a>
+            <a href="?page={{ tours.paginator.num_pages }}">Последняя &raquo;</a>
+        {% endif %}
+
+    </span>
+</div>

@@ -13,13 +13,39 @@
         <p>Дети: {{ i.kids }}</p>
         <p>Позиция: {{ i.position }}</p>
         <p>Зарплата: {{ i.salary }} сом</p>
+        <p>Просмотры: {{ i.views }}</p>
+
+        <a href="?view={{ i.id }}&page={{ worker_list.number }}">
+            Открыть профиль
+        </a>
+
         <p>Дата приема на работу: {{ i.hire_date }}</p>
     </li>
     {% endfor %}
-</u>
+</ul>
 
 <form action="{% url 'unlog' %}" method="POST">
     {% csrf_token %}
     <button type="submit">Выход</button>
 
 </form>
+
+<div class="pagination">
+    <span class="step-links">
+
+        {% if worker_list.has_previous %}
+            <a href="?page=1">&laquo; Первая</a>
+            <a href="?page={{ worker_list.previous_page_number }}">Предыдущая</a>
+        {% endif %}
+
+        <span class="current">
+            Страница {{ worker_list.number }} из {{ worker_list.paginator.num_pages }}.
+        </span>
+
+        {% if worker_list.has_next %}
+            <a href="?page={{ worker_list.next_page_number }}">Следующая</a>
+            <a href="?page={{ worker_list.paginator.num_pages }}">Последняя &raquo;</a>
+        {% endif %}
+
+    </span>
+</div>
