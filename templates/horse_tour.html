@@ -1,4 +1,9 @@
 <h1>Лошади</h1>
+
+<form action="{% url 'tour_search' %}" method="GET" enctype="multipart/form-data">
+    <input type="text" type="search" name="s" placeholder="Найти тур">
+    <button type="submit">Поиск</button>
+</form>
 <ul>
     {% for horse in horses %}
     <li>

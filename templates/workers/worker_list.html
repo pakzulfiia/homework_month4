@@ -1,5 +1,10 @@
 <h1>Люди</h1>
 
+<form action="{% url 'worker_search' %}" method="GET" enctype="multipart/form-data">
+    <input type="text" type="search" name="s" placeholder="Найти человека">
+    <button type="submit">Поиск</button>
+</form>
+
 <ul>
     {% for i in worker_list %}
     <li>

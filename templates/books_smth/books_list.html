@@ -1,5 +1,10 @@
 <h1>Книги </h1>
 
+<form action="{% url 'search' %}" method="GET" enctype="multipart/form-data">
+    <input type="text" type="search" name="s" placeholder="Найти книгу">
+    <button type="submit">Поиск</button>
+</form>
+
 <div class="pagination">
         <span class="step-links">
             {% if book.has_previous %}

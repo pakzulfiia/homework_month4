@@ -1,0 +1,6 @@
+<h1>Вы уверенны что хотите удалить игру? - {{ thing_id.title }}</h1>
+<form method="POST">
+    {% csrf_token %}
+    <button type="submit">Удалить</button>
+</form>
+<button><a href="{% url 'thing_list' %}">Нет</a></button>
