@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'myShop',
     'BASKET',
     'work',
+    'CineBoard',
 ]
 
 MIDDLEWARE = [

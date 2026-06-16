@@ -1,0 +1,6 @@
+<h1>Вы уверенны что хотите удалить фильм? - {{ movie_id.title }}</h1>
+<form method="POST">
+    {% csrf_token %}
+    <button type="submit">Удалить</button>
+</form>
+<button><a href="{% url 'games_list' %}">Нет</a></button>

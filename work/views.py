@@ -6,12 +6,8 @@ from . import models, forms
 from django.http import HttpResponse
 from django.core.paginator import Paginator
 from django.db.models import F
-
-
-
 from django.views import generic
-from django.core.paginator import Paginator
-from django.http import HttpResponse
+
 
 class WorkerSearchView(generic.ListView):
     model = models.CustomUser

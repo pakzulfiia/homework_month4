@@ -1,0 +1,80 @@
+<h1>Название - {{ movie.title }}</h1>
+
+<img src="{{ movie.photo.url }}"
+     alt="{{ movie.title }}"      
+     width="300"
+     height="200">
+
+<p>Описание - {{ movie.description }}</p>
+<p>Страна - {{ movie.country }}</p>
+<p>Режиссёр - {{ movie.director }}</p>
+<p>Язык - {{ movie.language }}</p>
+<p>Дата выхода - {{ movie.release_date }}</p>
+<p>Рейтинг - {{ movie.mark }}</p>
+<p>Актёры - {{ movie.actors }}</p>
+<p>Жанры:</p>
+
+<ul>
+    {% for genre in movie.genres.all %}
+        <li>{{ genre.name }}</li>
+    {% empty %}
+        <li>Жанры не указаны</li>
+    {% endfor %}
+</ul>
+
+<p>Дата создания - {{ movie.created_at }}</p>
+
+<br>
+
+<h2>Комментарии</h2>
+
+{% for comment in comments %}
+    <div>
+        <b>{{ comment.author.username }}</b>
+        <p>{{ comment.text }}</p>
+        <small>{{ comment.created_at }}</small>
+    </div>
+    <hr>
+{% empty %}
+    <p>Комментариев пока нет.</p>
+{% endfor %}
+
+{% if user.is_authenticated %}
+    <h3>Добавить комментарий</h3>
+
+    <form method="post"
+          action="{% url 'add_comment' movie.pk %}">
+        {% csrf_token %}
+        {{ comment_form.as_p }}
+        <button type="submit">
+            Отправить
+        </button>
+    </form>
+
+    <hr>
+
+    <form method="post"
+          action="{% url 'reserved_vip' movie.pk %}">
+        {% csrf_token %}
+        <button type="submit">
+            Забронировать VIP место
+        </button>
+    </form>
+    {% if messages %}
+    {% for message in messages %}
+        <p>
+            {{ message }}
+        </p>
+    {% endfor %}
+    {% endif %}
+
+{% else %}
+    <p>
+        Войдите в аккаунт, чтобы оставить комментарий
+        или забронировать VIP место.
+    </p>
+{% endif %}
+
+<a href="{% url 'movie_list' %}">
+    Назад к списку фильмов
+</a>
